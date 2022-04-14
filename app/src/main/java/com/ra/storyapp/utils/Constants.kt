@@ -8,12 +8,13 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.net.Uri
 import android.os.Environment
+import com.ra.storyapp.BuildConfig
 import com.ra.storyapp.R
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-const val BASE_URL = "https://story-api.dicoding.dev/v1/"
+const val BASE_URL = BuildConfig.BASE_URL
 const val LOGIN_URL = "login"
 const val ADD_NEW_STORY_URL = "stories"
 const val GET_ALL_STORY_URL = "stories"
