@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/drawable/ic_add_24.xml" value="0.32" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.32" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/drawable/ic_capture.xml" value="0.1" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/drawable/ic_email_24.xml" value="0.32" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/drawable/ic_lock_24.xml" value="0.1715" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/layout/activity_add_story.xml" value="0.22" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/layout/activity_camera.xml" value="0.12986111111111112" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/layout/activity_detail_story.xml" value="0.18" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/layout/activity_list_story.xml" value="0.25" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/layout/image_banner_widget.xml" value="0.21710526315789475" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/layout/item_list_story.xml" value="0.25" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/layout/story_app_widget.xml" value="0.21710526315789475" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/layout/widget_item.xml" value="0.21710526315789475" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/menu/activity_list_menu.xml" value="0.21710526315789475" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1695" />
+        <entry key="..\:/Kuliah/DicodingCourse/Android/Belajar Pengembangan Aplikasi Android Intermediate/Submission/StoryApp-1/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1695" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

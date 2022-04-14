@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Story App</string>
+    <string name="txt_registration">Daftar</string>
+    <string name="txt_login" tools:keep="@string/txt_login">Masuk</string>
+    <string name="txt_error_edt_password">Min 6 Karakter</string>
+    <string name="txt_error_edt_email">Format email salah</string>
+    <string name="txt_sign_in" tools:keep="@string/txt_sign_in">Masuk</string>
+    <string name="txt_new_account" tools:keep="@string/txt_new_account">Buat akun baru?</string>
+    <string name="txt_name" tools:keep="@string/txt_name">Nama</string>
+    <string name="txt_story">Cerita</string>
+    <string name="txt_empty_column">Kolom kosong</string>
+    <string name="wrong_email_or_password">Tidak bisa masuk, mohon cek email atau password kamu</string>
+    <string name="txt_create_account" tools:keep="@string/txt_create_account">Buat akun</string>
+    <string name="txt_create_story" tools:keep="@string/txt_create_story">Buat cerita</string>
+    <string name="txt_camera" tools:keep="@string/txt_camera">Kamera</string>
+    <string name="txt_upload" tools:keep="@string/txt_upload">Unggah</string>
+    <string name="txt_description" tools:keep="@string/txt_description">Tulis ceritamu disini.</string>
+    <string name="txt_new_story">Cerita baru</string>
+    <string name="txt_logout">Keluar</string>
+    <string name="txt_successful">Berhasil</string>
+    <string name="txt_failed">Gagal</string>
+    <string name="txt_not_allowed">Tidak memiliki izin</string>
+    <string name="txt_choose_picture">Pilih gambar</string>
+    <string name="txt_empty_picture">Mohon masukkan gambar sebelum mengunggah</string>
+    <string name="txt_detail_story">Detail Cerita</string>
+</resources>
