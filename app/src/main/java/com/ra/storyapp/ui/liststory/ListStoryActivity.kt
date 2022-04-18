@@ -25,7 +25,6 @@ class ListStoryActivity : AppCompatActivity(), ListStoryAdapter.OnClickItemCallb
     }
 
     private val viewModel: ListStoryViewModel by viewModel()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(viewBinding.root)
