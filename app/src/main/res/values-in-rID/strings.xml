@@ -24,4 +24,7 @@
     <string name="txt_choose_picture">Pilih gambar</string>
     <string name="txt_empty_picture">Mohon masukkan gambar sebelum mengunggah</string>
     <string name="txt_detail_story">Detail Cerita</string>
+    <string name="dec_switch_btn">tombol ganti kamera</string>
+    <string name="desc_photo_btn">tombol untuk mengambil gambar</string>
+    <string name="dec_img_photo">foto cerita</string>
 </resources>

@@ -28,4 +28,7 @@
     <string name="txt_choose_picture">Choose a picture</string>
     <string name="txt_empty_picture">Please enter an image before uploading</string>
     <string name="txt_detail_story">Detail Story</string>
+    <string name="desc_photo_btn">button for take a picture</string>
+    <string name="dec_switch_btn">button switch camera</string>
+    <string name="dec_img_photo">story foto</string>
 </resources>

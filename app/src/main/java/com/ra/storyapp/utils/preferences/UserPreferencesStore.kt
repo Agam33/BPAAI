@@ -12,29 +12,29 @@ val Context.dataStore by preferencesDataStore("user_preferences")
 
 class UserPreferencesStore(private val context: Context): IUserPreferencesStore {
 
-    private val USER_TOKEN = stringPreferencesKey("user_token")
-    private val IS_VERIFIED = booleanPreferencesKey("user_verify")
+    private val userToken = stringPreferencesKey("user_token")
+    private val isVerified = booleanPreferencesKey("user_verify")
 
     override suspend fun saveVerification(verify: Boolean?) {
         context.dataStore.edit { preferences ->
-            preferences[IS_VERIFIED] = verify ?: false
+            preferences[isVerified] = verify ?: false
         }
     }
 
     override fun isVerified(): Flow<Boolean?> =
         context.dataStore.data.map { preferences ->
-            preferences[IS_VERIFIED] ?: false
+            preferences[isVerified] ?: false
         }
 
     override suspend fun saveToken(token: String?) {
          context.dataStore.edit { preferences ->
-            preferences[USER_TOKEN] = token ?: ""
+            preferences[userToken] = token ?: ""
         }
     }
 
     override fun getToken(): Flow<String?> =
         context.dataStore.data.map { preferences ->
-            preferences[USER_TOKEN]
+            preferences[userToken]
         }
 
     override suspend fun clearData() {

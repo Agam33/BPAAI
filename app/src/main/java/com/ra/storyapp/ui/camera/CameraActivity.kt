@@ -60,8 +60,8 @@ class CameraActivity: AppCompatActivity() {
 
             val preview = Preview.Builder()
                 .build()
-                .also {
-                    it.setSurfaceProvider(viewBinding.viewFinder.surfaceProvider)
+                .apply {
+                    setSurfaceProvider(viewBinding.viewFinder.surfaceProvider)
                 }
 
             imageCapture = ImageCapture.Builder()

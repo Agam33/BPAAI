@@ -28,7 +28,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_image_24"
-                app:civ_border_width="1dp" />
+                app:civ_border_width="1dp"
+                android:contentDescription="@string/dec_img_photo" />
 
         </androidx.cardview.widget.CardView>
 

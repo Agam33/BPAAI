@@ -54,13 +54,13 @@ class ListStoryActivity : AppCompatActivity(), ListStoryAdapter.OnClickItemCallb
     }
 
     private fun setListStory(stories: List<Story>) = with(viewBinding) {
-        val adapter = ListStoryAdapter()
-        adapter.setList(stories)
-        adapter.setOnClickItem(this@ListStoryActivity)
+        val listAdapter = ListStoryAdapter()
+        listAdapter.setList(stories)
+        listAdapter.setOnClickItem(this@ListStoryActivity)
         rvListStory.apply {
-            this.adapter = adapter
-            this.layoutManager = LinearLayoutManager(this@ListStoryActivity)
-            this.setHasFixedSize(true)
+            adapter = listAdapter
+            layoutManager = LinearLayoutManager(this@ListStoryActivity)
+            setHasFixedSize(true)
         }
     }
 
