@@ -1,4 +1,4 @@
-package com.ra.storyapp.ui.liststory.adapter
+package com.ra.storyapp.adapter
 
 
 import android.animation.AnimatorSet
@@ -7,14 +7,15 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ra.storyapp.databinding.ItemListStoryBinding
 import com.ra.storyapp.domain.model.Story
 import com.ra.storyapp.utils.setImage
 
-class ListStoryAdapter: RecyclerView.Adapter<ListStoryAdapter.MyViewHolder>() {
-
-    private var stories: List<Story> = ArrayList()
+class ListStoryAdapter:
+    PagingDataAdapter<Story, ListStoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     private lateinit var onClickItemCallback: OnClickItemCallback
 
@@ -32,18 +33,12 @@ class ListStoryAdapter: RecyclerView.Adapter<ListStoryAdapter.MyViewHolder>() {
                 onClickItemCallback.detailStory(story)
             }
 
-            val animItem = ObjectAnimator.ofFloat(root, View.ALPHA, 1f).setDuration(500)
+            val animItem = ObjectAnimator.ofFloat(root, View.ALPHA, 1f).setDuration(750)
             AnimatorSet().apply {
                 play(animItem)
                 start()
             }
         }
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun setList(stories: List<Story>) {
-        this.stories = stories
-        notifyDataSetChanged()
     }
 
     fun setOnClickItem(onClickItemCallback: OnClickItemCallback) {
@@ -56,11 +51,22 @@ class ListStoryAdapter: RecyclerView.Adapter<ListStoryAdapter.MyViewHolder>() {
        )
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val story = stories[position]
-        holder.bind(story)
+        getItem(position)?.let {
+            holder.bind(it)
+        }
     }
 
-    override fun getItemCount(): Int = stories.size
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Story>() {
+            override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: Story, newItem: Story): Boolean {
+                return oldItem.id == newItem.id
+            }
+        }
+    }
 
     interface OnClickItemCallback {
         fun detailStory(story: Story)

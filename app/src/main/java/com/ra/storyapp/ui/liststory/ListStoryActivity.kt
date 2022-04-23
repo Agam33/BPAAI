@@ -13,7 +13,7 @@ import com.ra.storyapp.domain.model.Story
 import com.ra.storyapp.ui.addstory.AddStoryActivity
 import com.ra.storyapp.ui.detailstory.DetailStoryActivity
 import com.ra.storyapp.ui.detailstory.DetailStoryActivity.Companion.EXTRA_DETAIL_STORY
-import com.ra.storyapp.ui.liststory.adapter.ListStoryAdapter
+import com.ra.storyapp.adapter.ListStoryAdapter
 import com.ra.storyapp.ui.login.LoginActivity
 import com.ra.storyapp.utils.Resources
 import com.ra.storyapp.utils.hideView
@@ -32,38 +32,20 @@ class ListStoryActivity : AppCompatActivity(), ListStoryAdapter.OnClickItemCallb
         setContentView(viewBinding.root)
         setupActionBar()
         handleActionView()
-        setObservers()
+        setListStory()
     }
 
-    private fun setObservers() = with(viewBinding) {
-        viewModel.getAllStory().observe(this@ListStoryActivity) { result ->
-            when(result) {
-                is Resources.Loading -> {
-                    progressBar.hideView(false)
-                }
-                is Resources.Success -> {
-                    tvNoData.hideView(true)
-                    progressBar.hideView(true)
-                    result.data?.let { stories ->
-                        setListStory(stories)
-                    } ?: setListStory(ArrayList())
-                }
-                is Resources.Error -> {
-                    progressBar.hideView(true)
-                    tvNoData.hideView(false)
-                }
-            }
-        }
-    }
-
-    private fun setListStory(stories: List<Story>) = with(viewBinding) {
+    private fun setListStory() = with(viewBinding) {
         val listAdapter = ListStoryAdapter()
-        listAdapter.setList(stories)
         listAdapter.setOnClickItem(this@ListStoryActivity)
         rvListStory.apply {
             adapter = listAdapter
             layoutManager = LinearLayoutManager(this@ListStoryActivity)
             setHasFixedSize(true)
+        }
+
+        viewModel.getAllStory().observe(this@ListStoryActivity) { result ->
+            listAdapter.submitData(lifecycle, result)
         }
     }
 
