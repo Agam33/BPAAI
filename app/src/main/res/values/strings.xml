@@ -21,7 +21,7 @@
     <string name="txt_upload" tools:keep="@string/txt_upload">Upload</string>
     <string name="txt_description" tools:keep="@string/txt_description">Write your story here.</string>
     <string name="txt_new_story">New Story</string>
-    <string name="txt_logout">logout</string>
+    <string name="txt_logout">Logout</string>
     <string name="txt_successful">Successful</string>
     <string name="txt_failed">Failed</string>
     <string name="txt_not_allowed">Do not have permission</string>
@@ -30,5 +30,7 @@
     <string name="txt_detail_story">Detail Story</string>
     <string name="desc_photo_btn">button for take a picture</string>
     <string name="dec_switch_btn">button switch camera</string>
-    <string name="dec_img_photo">story foto</string>
+    <string name="dec_img_photo">story photo</string>
+    <string name="txt_language">Language</string>
+    <string name="txt_no_data">No data</string>
 </resources>

@@ -26,4 +26,7 @@
     <string name="dec_switch_btn">tombol ganti kamera</string>
     <string name="desc_photo_btn">tombol untuk mengambil gambar</string>
     <string name="dec_img_photo">foto cerita</string>
+    <string name="txt_settings">pengaturan</string>
+    <string name="txt_language">Bahasa</string>
+    <string name="txt_no_data">Tidak ada data</string>
 </resources>

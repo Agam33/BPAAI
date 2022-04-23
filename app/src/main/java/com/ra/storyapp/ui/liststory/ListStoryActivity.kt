@@ -3,6 +3,7 @@ package com.ra.storyapp.ui.liststory
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,6 +42,7 @@ class ListStoryActivity : AppCompatActivity(), ListStoryAdapter.OnClickItemCallb
                     progressBar.hideView(false)
                 }
                 is Resources.Success -> {
+                    tvNoData.hideView(true)
                     progressBar.hideView(true)
                     result.data?.let { stories ->
                         setListStory(stories)
@@ -48,6 +50,7 @@ class ListStoryActivity : AppCompatActivity(), ListStoryAdapter.OnClickItemCallb
                 }
                 is Resources.Error -> {
                     progressBar.hideView(true)
+                    tvNoData.hideView(false)
                 }
             }
         }
@@ -85,6 +88,10 @@ class ListStoryActivity : AppCompatActivity(), ListStoryAdapter.OnClickItemCallb
                 viewModel.signOut()
                 startActivity(Intent(this@ListStoryActivity, LoginActivity::class.java))
                 finish()
+                true
+            }
+            R.id.menu_settings -> {
+                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
                 true
             }
             else -> super.onOptionsItemSelected(item)
