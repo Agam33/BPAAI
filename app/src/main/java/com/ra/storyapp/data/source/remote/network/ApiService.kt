@@ -1,10 +1,7 @@
 package com.ra.storyapp.data.source.remote.network
 
 import com.ra.storyapp.data.source.remote.network.response.*
-import com.ra.storyapp.utils.ADD_NEW_STORY_URL
-import com.ra.storyapp.utils.GET_ALL_STORY_URL
-import com.ra.storyapp.utils.LOGIN_URL
-import com.ra.storyapp.utils.REGISTER_URL
+import com.ra.storyapp.utils.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
@@ -14,6 +11,12 @@ interface ApiService {
     @GET(GET_ALL_STORY_URL)
     suspend fun getAllStories(
         @Header("Authorization") authorization: String
+    ): StoryResponse
+
+    @GET(GET_ALL_STORY_WITH_LOCATION_URL)
+    suspend fun getAllStoriesWithLocation(
+        @Header("Authorization") authorization: String,
+        @Path("state") state: Int,
     ): StoryResponse
 
     @FormUrlEncoded
