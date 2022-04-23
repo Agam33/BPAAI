@@ -50,8 +50,7 @@ val databaseModule = module {
             androidContext(),
             StoryDatabase::class.java,
             "story_database"
-        )
-        .fallbackToDestructiveMigration()
+        ).fallbackToDestructiveMigration()
         .build()
     }
 }
