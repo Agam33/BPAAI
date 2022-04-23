@@ -15,13 +15,6 @@ interface ApiService {
         @Query("size") size: Int,
     ): StoryResponse
 
-    @GET(GET_ALL_STORY_LOCATION_URL)
-    suspend fun getAllStoriesWithLocation(
-        @Header("Authorization") authorization: String,
-        @Query("page") page: Int,
-        @Query("size") size: Int,
-    ): StoryResponse
-
     @FormUrlEncoded
     @POST(REGISTER_URL)
     suspend fun registerAccount(

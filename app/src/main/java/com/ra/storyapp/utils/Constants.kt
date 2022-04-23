@@ -18,7 +18,6 @@ const val BASE_URL = BuildConfig.BASE_URL
 const val LOGIN_URL = "login"
 const val ADD_NEW_STORY_URL = "stories"
 const val GET_ALL_STORY_URL = "stories"
-const val GET_ALL_STORY_LOCATION_URL = "stories?location=1"
 const val REGISTER_URL = "register"
 const val BEARER_TOKEN = "Bearer"
 
