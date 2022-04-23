@@ -44,7 +44,6 @@ val networkModule = module {
 
 val databaseModule = module {
     factory { get<StoryDatabase>().storyDao() }
-    factory { get<StoryDatabase>().remoteKeysDao() }
     single {
         Room.databaseBuilder(
             androidContext(),

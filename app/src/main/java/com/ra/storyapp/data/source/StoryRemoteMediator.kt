@@ -78,10 +78,10 @@ class StoryRemoteMediator: RemoteMediator<Int, StoryEntity>() {
                 val keys = responseData.map {
                     RemoteKeys(id = it.id, prevKey = prevKey, nextKey = nextKey)
                 }
-                database.storyDao().insertStories(data)
                 database.remoteKeysDao().insertAll(keys)
+                database.storyDao().insertStories(data)
             }
-            return MediatorResult.Success(endOfPaginationReached == endOfPaginationReached)
+            return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (e: Exception) {
             return MediatorResult.Error(e)
         }

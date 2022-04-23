@@ -7,7 +7,6 @@ import java.io.File
 
 interface IRemoteDataSource {
 
-//    suspend fun getAllStoriesWithLocation(authorization: String, page: Int, size: Int): Flow<ApiResponse<List<StoriesResponse>>>
 
     suspend fun registerAccount(name: String, email: String, password: String): Flow<ApiResponse<RegisterResponse>>
 
