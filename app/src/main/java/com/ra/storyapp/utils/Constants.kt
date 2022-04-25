@@ -24,6 +24,14 @@ const val BEARER_TOKEN = "Bearer"
 
 private const val FILENAME_FORMAT = "dd-MMM-yyyy"
 
+enum class MapStyleOption {
+    STANDARD,
+    SILVER,
+    RETRO,
+    DARK
+}
+
+
 val timeStamp: String = SimpleDateFormat(
     FILENAME_FORMAT,
     Locale.US

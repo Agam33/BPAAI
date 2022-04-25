@@ -35,4 +35,8 @@
     <string name="txt_no_data">No data</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="txt_maps">Maps</string>
+    <string name="map_style_standard">Standard</string>
+    <string name="map_style_silver">Silver</string>
+    <string name="map_style_retro">Retro</string>
+    <string name="map_style_dark">Dark</string>
 </resources>

@@ -4,6 +4,8 @@ import android.Manifest
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 
@@ -12,10 +14,12 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import com.ra.storyapp.R
 import com.ra.storyapp.databinding.ActivityMapsBinding
 import com.ra.storyapp.domain.model.Story
+import com.ra.storyapp.utils.MapStyleOption
 import com.ra.storyapp.utils.Resources
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -41,6 +45,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
         getMapLocation()
         observer()
+        mapStyle()
         mMap.moveCamera(CameraUpdateFactory.newLatLng(DEFAULT_POSITION))
     }
 
@@ -86,6 +91,41 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             mMap.isMyLocationEnabled = true
         } else  {
             requestMapPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.activity_maps_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+        when(item.itemId) {
+            R.id.standard_style -> {
+
+                viewModel.setMapStyle(MapStyleOption.STANDARD)
+                true
+            }
+            R.id.silver_style -> {
+                viewModel.setMapStyle(MapStyleOption.SILVER)
+                true
+            }
+            R.id.retro_style -> {
+                viewModel.setMapStyle(MapStyleOption.RETRO)
+                true
+            }
+            R.id.dark_style -> {
+                viewModel.setMapStyle(MapStyleOption.DARK)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+
+    private fun mapStyle() {
+        viewModel.getMapStyle.observe(this) { style ->
+            try {
+                mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, style))
+            } catch (e: android.content.res.Resources.NotFoundException) { }
         }
     }
 
