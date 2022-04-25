@@ -16,7 +16,6 @@ interface ApiService {
     @GET(GET_ALL_STORY_WITH_LOCATION_URL)
     suspend fun getAllStoriesWithLocation(
         @Header("Authorization") authorization: String,
-        @Path("state") state: Int,
     ): StoryResponse
 
     @FormUrlEncoded

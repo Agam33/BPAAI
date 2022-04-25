@@ -17,6 +17,9 @@ class StoryAppUseCase(
     override fun getAllStories(authorization: String): Flow<Resources<List<Story>>> =
         storyRepository.getAllStories(authorization)
 
+    override fun getAllStoriesWithLocation(authorization: String): Flow<Resources<List<Story>>> =
+        storyRepository.getAllStoriesWithLocation(authorization)
+
     override fun register(name: String, email: String, password: String): Flow<Resources<RegisterResponse>> =
         storyRepository.register(name, email, password)
 

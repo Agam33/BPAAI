@@ -9,6 +9,8 @@ interface IRemoteDataSource {
 
     suspend fun getAllStories(authorization: String): Flow<ApiResponse<List<StoriesResponse>>>
 
+    suspend fun getAllStoriesWithLocation(authorization: String): Flow<ApiResponse<List<StoriesResponse>>>
+
     suspend fun registerAccount(name: String, email: String, password: String): Flow<ApiResponse<RegisterResponse>>
 
     suspend fun login(email: String, password: String): Flow<ApiResponse<LoginResultResponse>>

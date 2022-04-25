@@ -10,6 +10,7 @@ import com.ra.storyapp.domain.usecase.StoryAppUseCase
 import com.ra.storyapp.ui.addstory.AddStoryViewModel
 import com.ra.storyapp.ui.liststory.ListStoryViewModel
 import com.ra.storyapp.ui.login.LoginViewModel
+import com.ra.storyapp.ui.maps.MapsViewModel
 import com.ra.storyapp.ui.register.RegisterViewModel
 import com.ra.storyapp.utils.BASE_URL
 import com.ra.storyapp.utils.preferences.IUserPreferencesStore
@@ -52,6 +53,7 @@ val viewModelModule = module {
     factory { ListStoryViewModel(get()) }
     factory { RegisterViewModel(get()) }
     factory { LoginViewModel(get()) }
+    factory { MapsViewModel(get()) }
 }
 
 val dataStoreModule = module {

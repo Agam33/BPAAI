@@ -22,4 +22,10 @@ data class StoriesResponse(
 
     @field:SerializedName("createdAt")
     val createdAt: String,
+
+    @field:SerializedName("lat")
+    val lat: Double,
+
+    @field:SerializedName("lon")
+    val lon: Double
 )

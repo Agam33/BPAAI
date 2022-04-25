@@ -12,6 +12,8 @@ interface IStoryAppUseCase {
 
     fun getAllStories(authorization: String): Flow<Resources<List<Story>>>
 
+    fun getAllStoriesWithLocation(authorization: String): Flow<Resources<List<Story>>>
+
     fun register(name: String, email: String, password: String): Flow<Resources<RegisterResponse>>
 
     fun login(email: String, password: String): Flow<Resources<LoginResult>>

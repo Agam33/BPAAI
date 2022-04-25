@@ -39,6 +39,27 @@ class StoryRepository(
             }
         }
 
+    override fun getAllStoriesWithLocation(authorization: String): Flow<Resources<List<Story>>> =
+        flow {
+            emit(Resources.Loading())
+            val stories = ArrayList<Story>()
+            when(val apiResponse = remote.getAllStories(authorization).first()) {
+                is ApiResponse.Success -> {
+                    apiResponse.data.map {
+                        val data = DataMapper.storyResponseToModel(it)
+                        stories.add(data)
+                    }
+                    emit(Resources.Success(stories))
+                }
+                is ApiResponse.Empty -> {
+                    emit(Resources.Success(stories))
+                }
+                is ApiResponse.Error -> {
+                    emit(Resources.Error(apiResponse.errorMsg))
+                }
+            }
+        }
+
     override fun register(
         name: String,
         email: String,

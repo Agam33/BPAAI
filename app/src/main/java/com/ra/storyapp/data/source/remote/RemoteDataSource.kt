@@ -31,6 +31,17 @@ class RemoteDataSource(
             }
         }.flowOn(IO)
 
+    override suspend fun getAllStoriesWithLocation(authorization: String): Flow<ApiResponse<List<StoriesResponse>>> =
+        flow {
+            try {
+                val response = apiService.getAllStoriesWithLocation(authorization)
+                val result = response.listStory
+                emit(ApiResponse.Success(result))
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.message.toString()))
+            }
+        }.flowOn(IO)
+
     override suspend fun registerAccount(
         name: String,
         email: String,

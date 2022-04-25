@@ -14,6 +14,8 @@ object DataMapper {
             response.description,
             response.photoUrl,
             response.createdAt,
+            response.lat,
+            response.lon
         )
 
     fun loginResultResponseToModel(response: LoginResultResponse): LoginResult =
