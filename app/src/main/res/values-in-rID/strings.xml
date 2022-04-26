@@ -29,4 +29,8 @@
     <string name="txt_settings">pengaturan</string>
     <string name="txt_language">Bahasa</string>
     <string name="txt_no_data">Tidak ada data</string>
+    <string name="txt_maps">Peta</string>
+    <string name="title_activity_maps">Peta</string>
+    <string name="txt_use_location">Gunakan lokasi terkini</string>
+    <string name="txt_location_not_found">Lokasi tidak ditemukan.</string>
 </resources>

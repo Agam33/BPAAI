@@ -15,6 +15,11 @@ interface ApiService {
         @Query("size") size: Int,
     ): StoryResponse
 
+    @GET(GET_ALL_STORY_WITH_LOCATION_URL)
+    suspend fun getAllStoriesWithLocation(
+        @Header("Authorization") authorization: String,
+    ): StoryResponse
+
     @FormUrlEncoded
     @POST(REGISTER_URL)
     suspend fun registerAccount(
@@ -35,7 +40,8 @@ interface ApiService {
     suspend fun addNewStory(
         @Header("Authorization") authorization: String,
         @Part file: MultipartBody.Part,
-        @Part("description") description: RequestBody
+        @Part("description") description: RequestBody,
+        @Part("lat") lat: Float?,
+        @Part("lon") lon: Float?
     ): FileUploadResponse
-
 }

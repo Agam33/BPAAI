@@ -20,14 +20,23 @@ class StoryAppUseCase(
     override fun getAllStories(): LiveData<PagingData<StoryEntity>> =
         storyRepository.getAllStories()
 
+    override fun getAllStoriesWithLocation(authorization: String): Flow<Resources<List<Story>>> =
+        storyRepository.getAllStoriesWithLocation(authorization)
+
     override fun register(name: String, email: String, password: String): Flow<Resources<RegisterResponse>> =
         storyRepository.register(name, email, password)
 
     override fun login(email: String, password: String): Flow<Resources<LoginResult>> =
         storyRepository.login(email, password)
 
-    override fun addNewStory(authorization: String, file: File, description: String): Flow<Resources<FileUploadResponse>> =
-        storyRepository.addNewStory(authorization, file, description)
+    override fun addNewStory(
+        authorization: String,
+        file: File,
+        description: String,
+        latitude: Float?,
+        longitude: Float?
+    ): Flow<Resources<FileUploadResponse>> =
+        storyRepository.addNewStory(authorization, file, description, latitude, longitude)
 
     override suspend fun saveVerification(verify: Boolean?) =
         pref.saveVerification(verify)

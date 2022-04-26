@@ -24,8 +24,8 @@ data class StoriesResponse(
     val createdAt: String,
 
     @field:SerializedName("lat")
-    val latitude: Double,
+    val lat: Double,
 
     @field:SerializedName("lon")
-    val longitude: Double,
+    val lon: Double
 )

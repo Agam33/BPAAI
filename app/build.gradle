@@ -57,6 +57,9 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
 
+    // maps
+    implementation "com.google.android.gms:play-services-maps:$maps_version"
+
     // di
     implementation "io.insert-koin:koin-android:$koin_version"
 
@@ -95,4 +98,7 @@ dependencies {
 
     // paging
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    // services location
+    implementation "com.google.android.gms:play-services-location:$play_services_location_version"
 }

@@ -8,9 +8,12 @@ import java.io.File
 interface IRemoteDataSource {
 
 
+    suspend fun getAllStoriesWithLocation(authorization: String): Flow<ApiResponse<List<StoriesResponse>>>
+
     suspend fun registerAccount(name: String, email: String, password: String): Flow<ApiResponse<RegisterResponse>>
 
     suspend fun login(email: String, password: String): Flow<ApiResponse<LoginResultResponse>>
 
-    suspend fun addNewStory(authorization: String, file: File, description: String): Flow<ApiResponse<FileUploadResponse>>
+    suspend fun addNewStory(authorization: String, file: File, description: String, latitude: Float?,
+                            longitude: Float?): Flow<ApiResponse<FileUploadResponse>>
 }

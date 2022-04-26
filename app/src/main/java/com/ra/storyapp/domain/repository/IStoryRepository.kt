@@ -15,9 +15,12 @@ interface IStoryRepository {
 
      fun getAllStories(): LiveData<PagingData<StoryEntity>>
 
+     fun getAllStoriesWithLocation(authorization: String): Flow<Resources<List<Story>>>
+
      fun register(name: String, email: String, password: String): Flow<Resources<RegisterResponse>>
 
      fun login(email: String, password: String): Flow<Resources<LoginResult>>
 
-     fun addNewStory(authorization: String, file: File, description: String): Flow<Resources<FileUploadResponse>>
+     fun addNewStory(authorization: String, file: File, description: String, latitude: Float?,
+                     longitude: Float?): Flow<Resources<FileUploadResponse>>
 }

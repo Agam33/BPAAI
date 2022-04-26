@@ -15,6 +15,7 @@ import com.ra.storyapp.ui.detailstory.DetailStoryActivity
 import com.ra.storyapp.ui.detailstory.DetailStoryActivity.Companion.EXTRA_DETAIL_STORY
 import com.ra.storyapp.adapter.ListStoryAdapter
 import com.ra.storyapp.ui.login.LoginActivity
+import com.ra.storyapp.ui.maps.MapsActivity
 import com.ra.storyapp.utils.Resources
 import com.ra.storyapp.utils.hideView
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -74,6 +75,10 @@ class ListStoryActivity : AppCompatActivity(), ListStoryAdapter.OnClickItemCallb
             }
             R.id.menu_settings -> {
                 startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                true
+            }
+            R.id.menu_maps_view -> {
+                startActivity(Intent(this@ListStoryActivity, MapsActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)

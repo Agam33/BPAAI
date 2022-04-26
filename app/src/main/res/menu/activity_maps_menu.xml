@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="@string/map_style_standard"
+        app:showAsAction="never"
+        android:id="@+id/standard_style"/>
+
+    <item
+        android:id="@+id/silver_style"
+        android:title="@string/map_style_silver"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/retro_style"
+        android:title="@string/map_style_retro"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/dark_style"
+        android:title="@string/map_style_dark"
+        app:showAsAction="never"/>
+</menu>
