@@ -20,17 +20,6 @@ class RemoteDataSource(
     private val apiService: ApiService
 ): IRemoteDataSource {
 
-    override suspend fun getAllStories(authorization: String): Flow<ApiResponse<List<StoriesResponse>>> =
-        flow {
-            try {
-                val response = apiService.getAllStories(authorization)
-                val result = response.listStory
-                emit(ApiResponse.Success(result))
-            } catch (e: Exception) {
-                emit(ApiResponse.Error(e.message.toString()))
-            }
-        }.flowOn(IO)
-
     override suspend fun registerAccount(
         name: String,
         email: String,

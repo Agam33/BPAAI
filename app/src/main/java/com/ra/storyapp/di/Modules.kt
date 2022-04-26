@@ -1,6 +1,10 @@
 package com.ra.storyapp.di
 
+import androidx.room.Room
 import com.ra.storyapp.data.StoryRepository
+import com.ra.storyapp.data.source.local.ILocalDataSource
+import com.ra.storyapp.data.source.local.LocalDataSource
+import com.ra.storyapp.data.source.local.database.StoryDatabase
 import com.ra.storyapp.data.source.remote.IRemoteDataSource
 import com.ra.storyapp.data.source.remote.RemoteDataSource
 import com.ra.storyapp.data.source.remote.network.ApiService
@@ -38,9 +42,22 @@ val networkModule = module {
     }
 }
 
+val databaseModule = module {
+    factory { get<StoryDatabase>().storyDao() }
+    single {
+        Room.databaseBuilder(
+            androidContext(),
+            StoryDatabase::class.java,
+            "story_database"
+        ).fallbackToDestructiveMigration()
+        .build()
+    }
+}
+
 val repositoryModule = module {
-    single<IStoryRepository> { StoryRepository(get()) }
+    single<IStoryRepository> { StoryRepository(get(), get()) }
     single<IRemoteDataSource> { RemoteDataSource(get()) }
+    single<ILocalDataSource> {  LocalDataSource(get()) }
 }
 
 val useCaseModule = module {
@@ -57,3 +74,4 @@ val viewModelModule = module {
 val dataStoreModule = module {
     single<IUserPreferencesStore> { UserPreferencesStore(androidContext()) }
 }
+

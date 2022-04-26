@@ -1,9 +1,15 @@
 package com.ra.storyapp.data
 
+import androidx.lifecycle.LiveData
+import androidx.paging.*
+import com.ra.storyapp.data.source.StoryRemoteMediator
+import com.ra.storyapp.data.source.local.ILocalDataSource
+import com.ra.storyapp.data.source.local.database.entity.StoryEntity
 import com.ra.storyapp.data.source.remote.IRemoteDataSource
 import com.ra.storyapp.data.source.remote.network.ApiResponse
 import com.ra.storyapp.data.source.remote.network.response.FileUploadResponse
 import com.ra.storyapp.data.source.remote.network.response.RegisterResponse
+import com.ra.storyapp.data.source.remote.network.response.StoriesResponse
 import com.ra.storyapp.domain.model.LoginResult
 import com.ra.storyapp.domain.model.Story
 import com.ra.storyapp.domain.repository.IStoryRepository
@@ -14,30 +20,22 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import java.io.File
 
+@OptIn(ExperimentalPagingApi::class)
 class StoryRepository(
     private val remote: IRemoteDataSource,
+    private val local: ILocalDataSource
 ): IStoryRepository {
 
-    override fun getAllStories(authorization: String): Flow<Resources<List<Story>>> =
-        flow {
-            emit(Resources.Loading())
-            val stories = ArrayList<Story>()
-            when(val apiResponse = remote.getAllStories(authorization).first()) {
-                is ApiResponse.Success -> {
-                    apiResponse.data.map {
-                        val data = DataMapper.storyResponseToModel(it)
-                        stories.add(data)
-                    }
-                    emit(Resources.Success(stories))
-                }
-                is ApiResponse.Empty -> {
-                    emit(Resources.Success(stories))
-                }
-                is ApiResponse.Error -> {
-                    emit(Resources.Error(apiResponse.errorMsg))
-                }
+    override fun getAllStories(): LiveData<PagingData<StoryEntity>> =
+        Pager(
+            config = PagingConfig(
+                pageSize = 7
+            ),
+            remoteMediator = StoryRemoteMediator(),
+            pagingSourceFactory = {
+                local.getStories()
             }
-        }
+        ).liveData
 
     override fun register(
         name: String,

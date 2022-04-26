@@ -1,5 +1,8 @@
 package com.ra.storyapp.domain.usecase
 
+import androidx.lifecycle.LiveData
+import androidx.paging.PagingData
+import com.ra.storyapp.data.source.local.database.entity.StoryEntity
 import com.ra.storyapp.data.source.remote.network.response.FileUploadResponse
 import com.ra.storyapp.data.source.remote.network.response.RegisterResponse
 import com.ra.storyapp.domain.model.LoginResult
@@ -14,8 +17,8 @@ class StoryAppUseCase(
     private val storyRepository: IStoryRepository,
     private val pref: IUserPreferencesStore
 ): IStoryAppUseCase {
-    override fun getAllStories(authorization: String): Flow<Resources<List<Story>>> =
-        storyRepository.getAllStories(authorization)
+    override fun getAllStories(): LiveData<PagingData<StoryEntity>> =
+        storyRepository.getAllStories()
 
     override fun register(name: String, email: String, password: String): Flow<Resources<RegisterResponse>> =
         storyRepository.register(name, email, password)
