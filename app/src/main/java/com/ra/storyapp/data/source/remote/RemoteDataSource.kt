@@ -74,6 +74,8 @@ class RemoteDataSource(
         authorization: String,
         file: File,
         description: String,
+        latitude: Float?,
+        longitude: Float?
     ): Flow<ApiResponse<FileUploadResponse>> =
         flow {
             try {
@@ -87,7 +89,9 @@ class RemoteDataSource(
                 val response = apiService.addNewStory(
                     authorization,
                     imageMultiPart,
-                    description.toRequestBody("text/plain".toMediaTypeOrNull())
+                    description.toRequestBody("text/plain".toMediaTypeOrNull()),
+                    latitude,
+                    longitude,
                 )
 
                 emit(

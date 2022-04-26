@@ -1,5 +1,6 @@
 package com.ra.storyapp.utils
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.ContentResolver
 import android.content.Context
@@ -11,6 +12,7 @@ import android.os.Environment
 import com.ra.storyapp.BuildConfig
 import com.ra.storyapp.R
 import java.io.*
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -30,7 +32,6 @@ enum class MapStyleOption {
     RETRO,
     DARK
 }
-
 
 val timeStamp: String = SimpleDateFormat(
     FILENAME_FORMAT,

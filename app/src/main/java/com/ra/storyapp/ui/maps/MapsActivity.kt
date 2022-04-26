@@ -102,7 +102,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
         when(item.itemId) {
             R.id.standard_style -> {
-
                 viewModel.setMapStyle(MapStyleOption.STANDARD)
                 true
             }

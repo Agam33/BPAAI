@@ -5,13 +5,16 @@ import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.location.Location
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Looper
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.gms.location.*
 import com.ra.storyapp.R
 import com.ra.storyapp.databinding.ActivityAddStoryBinding
 import com.ra.storyapp.ui.camera.CameraActivity
@@ -34,12 +37,84 @@ class AddStoryActivity : AppCompatActivity() {
 
     private var getFile: File? = null
 
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var locationRequest: LocationRequest
+    private lateinit var locationCallback: LocationCallback
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(viewBinding.root)
         getPermission()
         setupActionBar()
         handleActionView()
+        createLocationService()
+        createLocationRequest()
+        createLocationCallBack()
+        startLocationUpdate()
+    }
+
+    private fun createLocationService() {
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+    }
+
+    private fun createLocationCallBack() {
+        locationCallback = object: LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                super.onLocationResult(locationResult)
+                viewModel.setLocation(locationResult.lastLocation)
+            }
+        }
+    }
+
+    private fun createLocationRequest() {
+        locationRequest = LocationRequest.create().apply {
+            interval = 1000
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+            maxWaitTime = 1000
+        }
+    }
+
+    private fun startLocationUpdate() {
+        checkPermission()
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
+        updateLocation()
+    }
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        when {
+            permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false -> {
+                updateLocation()
+            }
+            permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false -> {
+                updateLocation()
+            }
+        }
+    }
+
+    private fun checkPermission() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            viewBinding.switchUseLocation.isChecked = false
+            requestPermissionLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION))
+            return
+        }
+    }
+
+    private fun updateLocation() {
+        checkPermission()
+        fusedLocationProviderClient.lastLocation.addOnSuccessListener { location: Location? ->
+            location?.let {
+                viewModel.setLocation(it)
+            } ?: Toast.makeText(this@AddStoryActivity, getString(R.string.txt_location_not_found), Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun getPermission() {
@@ -56,13 +131,14 @@ class AddStoryActivity : AppCompatActivity() {
         btnCamera.setOnClickListener {
             startCameraX()
         }
-
         btnGallery.setOnClickListener {
             startGallery()
         }
-
         btnUpload.setOnClickListener {
             uploadData()
+        }
+        switchUseLocation.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked) checkPermission()
         }
     }
 
@@ -74,8 +150,24 @@ class AddStoryActivity : AppCompatActivity() {
             return
         }
 
-        getFile?.let {
-            viewModel.addNewStory(it, description)
+        getFile?.let { file ->
+            if(viewBinding.switchUseLocation.isChecked) {
+                viewModel.getCurrentLocation.observe(this) { location: Location ->
+                    viewModel.addNewStory(
+                        file,
+                        description,
+                        location.latitude.toFloat(),
+                        location.longitude.toFloat(),
+                    )
+                }
+            } else {
+                viewModel.addNewStory(
+                    file,
+                    description,
+                    null,
+                    null,
+                )
+            }
         } ?: Toast.makeText(
                 this@AddStoryActivity,
                 getString(R.string.txt_empty_picture),
@@ -178,7 +270,9 @@ class AddStoryActivity : AppCompatActivity() {
     }
 
     companion object {
-        private val REQUIRED_PERMISSION = arrayOf(Manifest.permission.CAMERA)
+        private val REQUIRED_PERMISSION = arrayOf(
+            Manifest.permission.CAMERA,
+        )
         private const val REQUEST_CODE_PERMISSION = 10
     }
 }

@@ -15,5 +15,6 @@ interface IRemoteDataSource {
 
     suspend fun login(email: String, password: String): Flow<ApiResponse<LoginResultResponse>>
 
-    suspend fun addNewStory(authorization: String, file: File, description: String): Flow<ApiResponse<FileUploadResponse>>
+    suspend fun addNewStory(authorization: String, file: File, description: String, latitude: Float?,
+                            longitude: Float?): Flow<ApiResponse<FileUploadResponse>>
 }

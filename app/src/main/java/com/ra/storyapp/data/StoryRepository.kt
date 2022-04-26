@@ -99,11 +99,13 @@ class StoryRepository(
     override fun addNewStory(
         authorization: String,
         file: File,
-        description: String
+        description: String,
+        latitude: Float?,
+        longitude: Float?
     ): Flow<Resources<FileUploadResponse>> =
         flow {
             emit(Resources.Loading())
-            when(val apiResponse = remote.addNewStory(authorization, file, description).first()) {
+            when(val apiResponse = remote.addNewStory(authorization, file, description, latitude, longitude).first()) {
                 is ApiResponse.Success -> {
                     emit(Resources.Success(apiResponse.data))
                 }

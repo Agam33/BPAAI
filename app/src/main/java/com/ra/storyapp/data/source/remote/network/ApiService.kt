@@ -38,7 +38,8 @@ interface ApiService {
     suspend fun addNewStory(
         @Header("Authorization") authorization: String,
         @Part file: MultipartBody.Part,
-        @Part("description") description: RequestBody
+        @Part("description") description: RequestBody,
+        @Part("lat") lat: Float?,
+        @Part("lon") lon: Float?
     ): FileUploadResponse
-
 }

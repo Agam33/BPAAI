@@ -18,7 +18,8 @@ interface IStoryAppUseCase {
 
     fun login(email: String, password: String): Flow<Resources<LoginResult>>
 
-    fun addNewStory(authorization: String, file: File, description: String): Flow<Resources<FileUploadResponse>>
+    fun addNewStory(authorization: String, file: File, description: String, latitude: Float?,
+                    longitude: Float?): Flow<Resources<FileUploadResponse>>
 
     suspend fun saveVerification(verify: Boolean?)
 

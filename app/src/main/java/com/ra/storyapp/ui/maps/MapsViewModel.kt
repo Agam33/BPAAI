@@ -25,6 +25,5 @@ class MapsViewModel(
             MapStyleOption.STANDARD -> _getMapStyle.postValue(R.raw.standard_map_style)
         }
     }
-
 }
 
