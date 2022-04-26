@@ -26,8 +26,8 @@ object DataMapper {
             response.description,
             response.photoUrl,
             response.createdAt,
-            response.latitude,
-            response.longitude
+            response.lat,
+            response.lon
         )
 
     fun storyEntityToModel(storyEntity: StoryEntity): Story =
@@ -47,6 +47,5 @@ object DataMapper {
             response.name,
             response.token
         )
-
 
 }

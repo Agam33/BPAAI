@@ -9,7 +9,6 @@ import com.ra.storyapp.data.source.remote.IRemoteDataSource
 import com.ra.storyapp.data.source.remote.network.ApiResponse
 import com.ra.storyapp.data.source.remote.network.response.FileUploadResponse
 import com.ra.storyapp.data.source.remote.network.response.RegisterResponse
-import com.ra.storyapp.data.source.remote.network.response.StoriesResponse
 import com.ra.storyapp.domain.model.LoginResult
 import com.ra.storyapp.domain.model.Story
 import com.ra.storyapp.domain.repository.IStoryRepository
@@ -41,7 +40,7 @@ class StoryRepository(
         flow {
             emit(Resources.Loading())
             val stories = ArrayList<Story>()
-            when(val apiResponse = remote.getAllStories(authorization).first()) {
+            when(val apiResponse = remote.getAllStoriesWithLocation(authorization).first()) {
                 is ApiResponse.Success -> {
                     apiResponse.data.map {
                         val data = DataMapper.storyResponseToModel(it)
