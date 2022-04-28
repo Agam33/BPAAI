@@ -12,7 +12,6 @@ import com.ra.storyapp.utils.preferences.IUserPreferencesStore
 import com.ra.storyapp.utils.Resources
 import kotlinx.coroutines.flow.Flow
 import java.io.File
-
 class StoryAppUseCase(
     private val storyRepository: IStoryRepository,
     private val pref: IUserPreferencesStore
@@ -38,17 +37,20 @@ class StoryAppUseCase(
     ): Flow<Resources<FileUploadResponse>> =
         storyRepository.addNewStory(authorization, file, description, latitude, longitude)
 
-    override suspend fun saveVerification(verify: Boolean?) =
+    override suspend fun saveVerification(verify: Boolean?) {
         pref.saveVerification(verify)
+    }
 
     override fun isVerified(): Flow<Boolean?> =
         pref.isVerified()
 
-    override suspend fun saveToken(token: String?) =
+    override suspend fun saveToken(token: String?) {
         pref.saveToken(token)
+    }
 
     override fun getToken(): Flow<String?> = pref.getToken()
 
     override suspend fun signOut() =
         pref.clearData()
 }
+

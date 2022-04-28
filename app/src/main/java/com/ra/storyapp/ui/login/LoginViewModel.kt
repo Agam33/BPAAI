@@ -5,22 +5,24 @@ import com.ra.storyapp.domain.model.LoginResult
 import com.ra.storyapp.domain.usecase.IStoryAppUseCase
 import com.ra.storyapp.utils.Event
 import com.ra.storyapp.utils.Resources
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+
 
 class LoginViewModel(
     private val useCase: IStoryAppUseCase
 ): ViewModel() {
 
-    private val _isVerified: MutableLiveData<Event<Boolean>> by lazy {
-        MutableLiveData<Event<Boolean>>().apply {
-            viewModelScope.launch {
-              useCase.isVerified().first()?.let { postValue(Event(it)) }
-                  ?: postValue(Event(false))
-            }
+    private var _isVerified = MutableLiveData<Event<Boolean>>()
+    val isVerified: LiveData<Event<Boolean>> = _isVerified
+
+    fun checkVerification() {
+        viewModelScope.launch {
+            val state = useCase.isVerified().first() ?: false
+            _isVerified.value = (Event(state))
         }
     }
-    val isVerified: LiveData<Event<Boolean>> = _isVerified
 
     private var _loginResult = MutableLiveData<Resources<LoginResult>>()
     val loginResult: LiveData<Resources<LoginResult>> = _loginResult

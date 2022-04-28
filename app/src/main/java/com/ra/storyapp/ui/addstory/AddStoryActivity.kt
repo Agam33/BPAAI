@@ -75,7 +75,7 @@ class AddStoryActivity : AppCompatActivity() {
     }
 
     private fun startLocationUpdate() {
-        checkPermission()
+        checkLocationPermission()
         fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
         updateLocation()
     }
@@ -93,7 +93,7 @@ class AddStoryActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkPermission() {
+    private fun checkLocationPermission() {
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -109,7 +109,7 @@ class AddStoryActivity : AppCompatActivity() {
     }
 
     private fun updateLocation() {
-        checkPermission()
+        checkLocationPermission()
         fusedLocationProviderClient.lastLocation.addOnSuccessListener { location: Location? ->
             location?.let {
                 viewModel.setLocation(it)
@@ -138,7 +138,7 @@ class AddStoryActivity : AppCompatActivity() {
             uploadData()
         }
         switchUseLocation.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) checkPermission()
+            if(isChecked) checkLocationPermission()
         }
     }
 
