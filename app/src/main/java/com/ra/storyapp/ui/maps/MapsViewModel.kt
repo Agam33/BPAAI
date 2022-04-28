@@ -2,13 +2,16 @@ package com.ra.storyapp.ui.maps
 
 import androidx.lifecycle.*
 import com.ra.storyapp.R
+import com.ra.storyapp.domain.model.Story
 import com.ra.storyapp.domain.usecase.IStoryAppUseCase
 import com.ra.storyapp.utils.BEARER_TOKEN
 import com.ra.storyapp.utils.MapStyleOption
+import com.ra.storyapp.utils.Resources
+
 class MapsViewModel(
     private val useCase: IStoryAppUseCase
 ): ViewModel() {
-    fun getAllStoriesWithLocation() =
+    fun getAllStoriesWithLocation(): LiveData<Resources<List<Story>>> =
         useCase.getToken().asLiveData().switchMap {
             val token = it ?: ""
             useCase.getAllStoriesWithLocation("$BEARER_TOKEN $token").asLiveData()

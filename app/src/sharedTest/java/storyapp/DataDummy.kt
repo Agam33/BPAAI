@@ -4,7 +4,10 @@ import com.ra.storyapp.data.source.remote.network.response.RegisterResponse
 import com.ra.storyapp.domain.model.LoginResult
 import android.location.Location
 import android.location.LocationManager
+import com.ra.storyapp.R
+import com.ra.storyapp.data.source.local.database.entity.StoryEntity
 import com.ra.storyapp.data.source.remote.network.response.FileUploadResponse
+import com.ra.storyapp.domain.model.Story
 import java.io.File
 
 object DataDummy {
@@ -16,6 +19,7 @@ object DataDummy {
     const val longitude = 107.6338462
     const val description: String = "blabla"
     const val BEARER_TOKEN = "Bearer"
+    const val  mapStyle: Int = R.raw.dark_map_style
 
     fun getLoginResult(): LoginResult =
         LoginResult("123", "example", "123456")
@@ -26,13 +30,41 @@ object DataDummy {
     fun getRegisterResponse(): RegisterResponse =
         RegisterResponse(false, "success")
 
-    fun getLocation(): Location  {
-        val location = Location(LocationManager.GPS_PROVIDER)
-        location.latitude = latitude
-        location.longitude = longitude
-        return location
-    }
-
     fun getFile(): File = File("path/dummyFile")
 
+    fun listStory(): List<Story> {
+        val stories = ArrayList<Story>()
+        for(i in 0..10) {
+            stories.add(
+                Story(
+                    "$i",
+                    "name-$i",
+                    description = description,
+                    photoUrl = "image/path/dummy.jpg",
+                    createdAt = "28-04-2022",
+                    latitude,
+                    longitude
+                )
+            )
+        }
+        return stories
+    }
+
+    fun listStoryEntities(): List<StoryEntity> {
+        val stories = ArrayList<StoryEntity>()
+        for(i in 0..10) {
+            stories.add(
+                StoryEntity(
+                    "$i",
+                    "name-$i",
+                    description = description,
+                    photoUrl = "image/path/dummy.jpg",
+                    createdAt = "28-04-2022",
+                    latitude,
+                    longitude
+                )
+            )
+        }
+        return stories
+    }
 }

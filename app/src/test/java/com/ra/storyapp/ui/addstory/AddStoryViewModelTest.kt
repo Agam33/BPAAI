@@ -25,7 +25,6 @@ import storyapp.getOrAwaitValue
 @RunWith(MockitoJUnitRunner::class)
 class AddStoryViewModelTest {
 
-
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
@@ -40,11 +39,11 @@ class AddStoryViewModelTest {
     @Before
     fun setup() {
         viewModel = AddStoryViewModel(useCase)
+
     }
 
     @Test
     fun `fileUploadResponse, should be success`() = runTest {
-
         val dataFlow = flow { emit(Resources.Success(DataDummy.getFileUploadResponse())) }
         `when`(useCase.addNewStory(
             "${DataDummy.BEARER_TOKEN} ${DataDummy.token}",
@@ -91,13 +90,14 @@ class AddStoryViewModelTest {
     }
 
     @Test
-    fun `getCurrentLocation, should be success`() = runTest {
-        `when`(location).thenReturn(DataDummy.getLocation())
+    fun `getCurrentLocation, should be success`()  {
+        `when`(location.latitude).thenReturn(DataDummy.latitude)
+        `when`(location.longitude).thenReturn(DataDummy.longitude)
 
         val expectedLatitude = DataDummy.latitude.toFloat()
         val expectedLongitude = DataDummy.longitude.toFloat()
 
-        viewModel.setLocation(DataDummy.getLocation())
+        viewModel.setLocation(location)
 
         val data = viewModel.getCurrentLocation.getOrAwaitValue()
         val actualLatitude = data.latitude.toFloat()
@@ -106,6 +106,4 @@ class AddStoryViewModelTest {
         assertEquals(expectedLatitude, actualLatitude)
         assertEquals(expectedLongitude, actualLongitude)
     }
-
-
 }
