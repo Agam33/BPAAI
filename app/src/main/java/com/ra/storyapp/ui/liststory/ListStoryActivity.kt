@@ -1,23 +1,21 @@
 package com.ra.storyapp.ui.liststory
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ra.storyapp.R
+import com.ra.storyapp.adapter.ListStoryAdapter
 import com.ra.storyapp.databinding.ActivityListStoryBinding
 import com.ra.storyapp.domain.model.Story
 import com.ra.storyapp.ui.addstory.AddStoryActivity
 import com.ra.storyapp.ui.detailstory.DetailStoryActivity
 import com.ra.storyapp.ui.detailstory.DetailStoryActivity.Companion.EXTRA_DETAIL_STORY
-import com.ra.storyapp.adapter.ListStoryAdapter
 import com.ra.storyapp.ui.login.LoginActivity
 import com.ra.storyapp.ui.maps.MapsActivity
-import com.ra.storyapp.utils.Resources
-import com.ra.storyapp.utils.hideView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListStoryActivity : AppCompatActivity(), ListStoryAdapter.OnClickItemCallback {

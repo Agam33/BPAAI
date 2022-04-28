@@ -32,7 +32,7 @@
     <string name="dec_switch_btn">button switch camera</string>
     <string name="dec_img_photo">story photo</string>
     <string name="txt_language">Language</string>
-    <string name="txt_no_data">No data</string>
+    <string name="txt_no_data" tools:keep="@string/txt_no_data">No data</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="txt_maps">Maps</string>
     <string name="map_style_standard" translatable="false">Standard</string>

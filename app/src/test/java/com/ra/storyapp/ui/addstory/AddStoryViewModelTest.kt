@@ -2,7 +2,6 @@ package com.ra.storyapp.ui.addstory
 
 import android.location.Location
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.ra.storyapp.domain.usecase.IStoryAppUseCase
 import com.ra.storyapp.domain.usecase.StoryAppUseCase
 import com.ra.storyapp.utils.Resources
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -15,7 +14,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.*
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 import storyapp.DataDummy
 import storyapp.MainCoroutineRule

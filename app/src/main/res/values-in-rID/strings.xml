@@ -26,9 +26,9 @@
     <string name="dec_switch_btn">tombol ganti kamera</string>
     <string name="desc_photo_btn">tombol untuk mengambil gambar</string>
     <string name="dec_img_photo">foto cerita</string>
-    <string name="txt_settings">pengaturan</string>
+    <string name="txt_settings" tools:keep="@string/txt_settings">pengaturan</string>
     <string name="txt_language">Bahasa</string>
-    <string name="txt_no_data">Tidak ada data</string>
+    <string name="txt_no_data" tools:keep="@string/txt_no_data">Tidak ada data</string>
     <string name="txt_maps">Peta</string>
     <string name="title_activity_maps">Peta</string>
     <string name="txt_use_location">Gunakan lokasi terkini</string>

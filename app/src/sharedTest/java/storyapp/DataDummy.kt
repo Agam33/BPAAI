@@ -1,12 +1,10 @@
 package storyapp
 
-import com.ra.storyapp.data.source.remote.network.response.RegisterResponse
-import com.ra.storyapp.domain.model.LoginResult
-import android.location.Location
-import android.location.LocationManager
 import com.ra.storyapp.R
 import com.ra.storyapp.data.source.local.database.entity.StoryEntity
 import com.ra.storyapp.data.source.remote.network.response.FileUploadResponse
+import com.ra.storyapp.data.source.remote.network.response.RegisterResponse
+import com.ra.storyapp.domain.model.LoginResult
 import com.ra.storyapp.domain.model.Story
 import java.io.File
 
