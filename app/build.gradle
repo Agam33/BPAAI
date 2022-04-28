@@ -37,6 +37,10 @@ android {
     buildFeatures {
         viewBinding true
     }
+    sourceSets {
+        androidTest.java.srcDirs += "src/sharedTest/java"
+        test.java.srcDirs += "src/sharedTest/java"
+    }
 }
 
 dependencies {
@@ -48,10 +52,12 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     testImplementation 'junit:junit:4.13.2'
 
-
     // testing
     testImplementation "androidx.arch.core:core-testing:$arch_core_test_version" // InstantTaskExecutorRule
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version" //main coroutine rule
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlin_coroutines_test_version" //main coroutine rule
+    androidTestImplementation "androidx.arch.core:core-testing:$arch_core_test_version" // InstantTaskExecutorRule
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlin_coroutines_test_version" //TestCoroutineDispatcher
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
     testImplementation "org.mockito:mockito-core:$mockito_core_version"
     testImplementation "org.mockito:mockito-inline:$mockito_core_version"
     androidTestImplementation "androidx.test.ext:junit:$junit_version"
@@ -81,7 +87,7 @@ dependencies {
 
     // glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
 
     // circle image
     implementation "de.hdodenhof:circleimageview:$circle_image_version"
@@ -98,6 +104,7 @@ dependencies {
 
     // paging
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    implementation "androidx.paging:paging-common-ktx:$paging_version"
 
     // services location
     implementation "com.google.android.gms:play-services-location:$play_services_location_version"

@@ -30,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        viewModel.checkVerification()
         viewModel.isVerified.observe(this@LoginActivity) { event ->
             event.getContentIfNotHandled()?.let { state ->
                 if(state) {
