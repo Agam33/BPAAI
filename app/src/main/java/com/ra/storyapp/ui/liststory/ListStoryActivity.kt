@@ -18,7 +18,7 @@ import com.ra.storyapp.ui.login.LoginActivity
 import com.ra.storyapp.ui.maps.MapsActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ListStoryActivity : AppCompatActivity(), ListStoryAdapter.OnClickItemCallback {
+class ListStoryActivity : AppCompatActivity() {
 
     private val viewBinding: ActivityListStoryBinding by lazy {
         ActivityListStoryBinding.inflate(layoutInflater)
@@ -35,8 +35,12 @@ class ListStoryActivity : AppCompatActivity(), ListStoryAdapter.OnClickItemCallb
     }
 
     private fun setListStory() = with(viewBinding) {
-        val listAdapter = ListStoryAdapter()
-        listAdapter.setOnClickItem(this@ListStoryActivity)
+        val listAdapter = ListStoryAdapter { story ->
+            val intent = Intent(this@ListStoryActivity, DetailStoryActivity::class.java).apply {
+                putExtra(EXTRA_DETAIL_STORY, story)
+            }
+            startActivity(intent)
+        }
         rvListStory.apply {
             adapter = listAdapter
             layoutManager = LinearLayoutManager(this@ListStoryActivity)
@@ -81,12 +85,5 @@ class ListStoryActivity : AppCompatActivity(), ListStoryAdapter.OnClickItemCallb
             }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun detailStory(story: Story) {
-        val intent = Intent(this@ListStoryActivity, DetailStoryActivity::class.java).apply {
-            putExtra(EXTRA_DETAIL_STORY, story)
-        }
-        startActivity(intent)
     }
 }

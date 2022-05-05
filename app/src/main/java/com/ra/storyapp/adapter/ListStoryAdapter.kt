@@ -13,24 +13,21 @@ import com.ra.storyapp.databinding.ItemListStoryBinding
 import com.ra.storyapp.domain.model.Story
 import com.ra.storyapp.utils.setImage
 
-class ListStoryAdapter:
-    PagingDataAdapter<Story, ListStoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
-
-    private lateinit var onClickItemCallback: OnClickItemCallback
+class ListStoryAdapter(
+    val onItemClickCallback: (Story) -> Unit
+): PagingDataAdapter<Story, ListStoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     inner class MyViewHolder(
         private val binding: ItemListStoryBinding
-    ): RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(story: Story) = with(binding)  {
+        fun bind(story: Story) = with(binding) {
             imgPhoto.setImage(story.photoUrl)
             tvAuthor.text = story.name
             tvDate.text = story.createdAt.subSequence(0, 10)
             tvDescription.text = story.description
 
-            root.setOnClickListener {
-                onClickItemCallback.detailStory(story)
-            }
+            onItemClickCallback(story)
 
             val animItem = ObjectAnimator.ofFloat(root, View.ALPHA, 1f).setDuration(750)
             AnimatorSet().apply {
@@ -40,14 +37,10 @@ class ListStoryAdapter:
         }
     }
 
-    fun setOnClickItem(onClickItemCallback: OnClickItemCallback) {
-        this.onClickItemCallback = onClickItemCallback
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder =
-       MyViewHolder(
-           ItemListStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-       )
+        MyViewHolder(
+            ItemListStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        )
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         getItem(position)?.let {
@@ -65,10 +58,6 @@ class ListStoryAdapter:
                 return oldItem.id == newItem.id
             }
         }
-    }
-
-    interface OnClickItemCallback {
-        fun detailStory(story: Story)
     }
 }
 
