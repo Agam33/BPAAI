@@ -27,7 +27,9 @@ class ListStoryAdapter(
             tvDate.text = story.createdAt.subSequence(0, 10)
             tvDescription.text = story.description
 
-            onItemClickCallback(story)
+            root.setOnClickListener {
+                onItemClickCallback(story)
+            }
 
             val animItem = ObjectAnimator.ofFloat(root, View.ALPHA, 1f).setDuration(750)
             AnimatorSet().apply {
